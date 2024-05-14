@@ -1,0 +1,8 @@
+.div {
+  @apply h-full overflow-hidden;
+}
+
+.menu {
+  @apply grid
+  max-h-full grid-cols-4 justify-items-center gap-2 overflow-hidden overflow-y-auto p-4 md:grid-cols-6 lg:grid-cols-8;
+}

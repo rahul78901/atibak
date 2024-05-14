@@ -1,0 +1,15 @@
+.div {
+  @apply h-full overflow-hidden;
+}
+
+.grid {
+  @apply flex h-full flex-col gap-1;
+}
+
+.up {
+  @apply h-3 grow;
+}
+
+.bottom {
+  @apply flex items-center justify-around;
+}

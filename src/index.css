@@ -22,7 +22,9 @@ button {
   html,
   body,
   #root {
-    @apply h-dvh w-dvw bg-primary text-secondary;
+    height: 100vh;
+    width: 100vw;
+    @apply h-dvh w-dvw overflow-hidden bg-primary text-secondary;
   }
 }
 

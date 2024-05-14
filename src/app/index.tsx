@@ -2,16 +2,16 @@ import type { FC } from 'react';
 
 import BottomNav from '@/bottom-nav';
 
-import HomeScreen from '#/home';
+import MenuScreen from '#/menu';
 
-import styles from './layout.module.css';
+import styles from './style.module.css';
 
-const AppLayout: FC = () => (
+const App: FC = () => (
   <div className={styles.layout}>
     <main className={styles.main}>
-      <HomeScreen />
+      <MenuScreen />
     </main>
     <BottomNav />
   </div>
 );
-export default AppLayout;
+export default App;

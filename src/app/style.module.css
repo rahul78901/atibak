@@ -3,5 +3,5 @@
 }
 
 .main {
-  @apply grow bg-primary p-1;
+  @apply grow overflow-hidden p-1;
 }
