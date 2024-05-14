@@ -4,4 +4,4 @@ node_modules
 *.ico
 .prettier*
 *ignore*
-.husky/_
+.husky

@@ -23,7 +23,8 @@
   "filepath": "./src/*",
   "plugins": [
     "@trivago/prettier-plugin-sort-imports",
-    "eslint-plugin-prettier"
+    "eslint-plugin-prettier",
+    "prettier-plugin-tailwindcss"
   ],
   "overrides": [
     {
