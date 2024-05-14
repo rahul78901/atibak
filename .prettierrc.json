@@ -1,0 +1,54 @@
+{
+  "singleQuote": true,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "semi": true,
+  "trailingComma": "es5",
+  "singleAttributePerLine": true,
+  "importOrder": [
+    "react$",
+    "^(next/(.*)$)|^(next$)",
+    "^[a-zA-Z]",
+    "^@(.*)$",
+    "^&(.*)$",
+    "^%(.*)$",
+    "^\\$(.*)$",
+    "^#(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^./(.*).css"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "parser": "typescript",
+  "filepath": "./src/*",
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "eslint-plugin-prettier"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.json"
+      ],
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": [
+        "**/*.html"
+      ],
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": [
+        "**/*.css"
+      ],
+      "options": {
+        "parser": "css"
+      }
+    }
+  ]
+}
