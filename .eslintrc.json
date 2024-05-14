@@ -1,0 +1,19 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-var": "error",
+    "no-await-in-loop": "error",
+    "no-empty": "error",
+    "prefer-spread": "warn",
+    "curly": "error",
+    "no-func-assign": "error",
+    "no-irregular-whitespace": "error",
+    "require-await": "error",
+    "camelcase": "error"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ]
+}
