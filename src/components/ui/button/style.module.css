@@ -8,7 +8,5 @@
 }
 
 .icon {
-  @apply h-11
-              p-1
-          aspect-video;
+  @apply h-11 p-1 aspect-video;
 }
