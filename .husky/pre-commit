@@ -1,1 +1,1 @@
-echo "husky is running"
+pnpm lint-staged

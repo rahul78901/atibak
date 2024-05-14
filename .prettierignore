@@ -3,5 +3,5 @@ node_modules
 *.json
 *.ico
 .prettier*
-*.md
 *ignore*
+.husky/_
