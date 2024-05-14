@@ -1,7 +1,14 @@
 .button {
-  @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 p-1;
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 p-1;
 }
 
+.icon,
 .outline {
   @apply border-2 border-secondary;
+}
+
+.icon {
+  @apply h-11
+              p-1
+          aspect-video;
 }

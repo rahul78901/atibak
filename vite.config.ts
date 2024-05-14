@@ -10,6 +10,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(src, 'components'),
+      '#': path.resolve(src, 'screens'),
+      '₹': path.resolve(src, 'icons'),
     },
   },
 });

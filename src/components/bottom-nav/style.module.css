@@ -1,0 +1,16 @@
+.div {
+  @apply w-full
+  border-t-2
+  border-secondary
+  p-2
+  flex
+  items-center
+                justify-end;
+}
+
+.nav {
+  @apply flex gap-2
+  w-full
+  items-center justify-evenly
+  max-w-screen-lg;
+}

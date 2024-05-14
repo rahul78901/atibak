@@ -1,3 +1,9 @@
 .layout {
-  @apply flex flex-col gap-2 bg-destructive h-full w-full overflow-hidden;
+  @apply flex flex-col gap-2 h-full w-full overflow-hidden;
+}
+
+.main {
+  @apply bg-primary
+  grow
+p-1;
 }

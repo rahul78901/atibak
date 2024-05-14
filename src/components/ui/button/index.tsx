@@ -4,13 +4,15 @@ import styles from './style.module.css';
 
 type ButtonPropsType = PropsWithChildren & {
   className?: string;
-  variant: 'outline';
+  variant?: 'outline' | 'icon';
+  title?: string;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonPropsType>(
-  ({ className, children, variant }, ref) => (
+  ({ className, title, children, variant = 'outline' }, ref) => (
     <button
-      className={`${styles.button} ${variant === 'outline' && styles.outline} ${className}`}
+      className={`${styles.button} ${variant === 'outline' ? styles.outline : variant === 'icon' ? styles.icon : ''} ${className}`}
+      title={title}
       ref={ref}
     >
       {children}

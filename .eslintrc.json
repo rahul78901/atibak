@@ -9,7 +9,11 @@
     "no-func-assign": "error",
     "no-irregular-whitespace": "error",
     "require-await": "error",
-    "camelcase": "error"
+    "camelcase": "error",
+    "no-magic-numbers":"error",
+    "no-unused-expressions":"error",
+    "no-unused-vars":"error",
+    "no-unused-labels":"error"
   },
   "extends": [
     "eslint:recommended",

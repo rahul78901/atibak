@@ -1,12 +1,17 @@
 import type { FC } from 'react';
 
-import HomeScreen from './screens/home';
+import BottomNav from '@/bottom-nav';
+
+import HomeScreen from '#/home';
 
 import styles from './layout.module.css';
 
 const AppLayout: FC = () => (
   <div className={styles.layout}>
-    <HomeScreen />
+    <main className={styles.main}>
+      <HomeScreen />
+    </main>
+    <BottomNav />
   </div>
 );
 export default AppLayout;
