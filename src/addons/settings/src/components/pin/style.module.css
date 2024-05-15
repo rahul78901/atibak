@@ -1,0 +1,27 @@
+.pin {
+  @apply mx-auto w-fit space-y-2;
+}
+
+.group {
+  @apply flex w-fit items-center gap-2 border-none;
+}
+
+.group legend {
+  @apply capitalize;
+}
+
+.input {
+  @apply w-[calc(1rem+2ch)] px-2 text-center;
+}
+
+.input::placeholder {
+  @apply capitalize;
+}
+
+.span {
+  @apply inline-block aspect-square h-1 bg-secondary;
+}
+
+.button {
+  @apply w-full text-sm uppercase;
+}

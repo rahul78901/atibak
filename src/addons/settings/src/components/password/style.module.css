@@ -1,5 +1,5 @@
 .group {
-  @apply space-y-2;
+  @apply mx-auto max-w-xl space-y-2;
 }
 
 .input::placeholder {
