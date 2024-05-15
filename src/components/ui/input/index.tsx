@@ -2,9 +2,9 @@ import { type InputHTMLAttributes, forwardRef } from 'react';
 
 import styles from './style.module.css';
 
-type ButtonPropsType = InputHTMLAttributes<HTMLInputElement>;
+type InputPropsType = InputHTMLAttributes<HTMLInputElement>;
 
-const Input = forwardRef<HTMLInputElement, ButtonPropsType>(
+const Input = forwardRef<HTMLInputElement, InputPropsType>(
   ({ className, ...props }, ref) => (
     <input
       className={`${styles.input} ${className}`}
