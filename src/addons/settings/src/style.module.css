@@ -1,7 +1,11 @@
 .setting {
-  @apply flex h-full w-full overflow-hidden bg-[red];
+  @apply flex h-full w-full overflow-hidden;
 }
 
 .section {
-  @apply ml-1 grow border-l-2 pl-2;
+  @apply ml-1 grow border-l-2 p-2;
+}
+
+.section h2 {
+  @apply my-3 font-bold uppercase;
 }

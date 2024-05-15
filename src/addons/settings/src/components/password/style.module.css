@@ -1,0 +1,11 @@
+.group {
+  @apply space-y-2;
+}
+
+.input::placeholder {
+  @apply capitalize;
+}
+
+.button {
+  @apply w-full text-sm uppercase;
+}
