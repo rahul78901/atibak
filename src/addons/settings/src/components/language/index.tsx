@@ -7,7 +7,7 @@ import styles from './style.module.css';
 
 const LanguageScreen: FC = () => (
   <div>
-    <h2>chose your theme</h2>
+    <h2>chose your language</h2>
 
     <div className={styles.group}>
       <Select>
