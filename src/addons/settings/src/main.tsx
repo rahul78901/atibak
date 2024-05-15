@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
+import LanguageScreen from './components/language';
 import SideNav from './components/side-nav';
-import ThemeScreen from './components/theme';
 
 import styles from './style.module.css';
 
@@ -10,7 +10,7 @@ const SettingAddon: FC = () => (
     <SideNav />
 
     <section className={styles.section}>
-      <ThemeScreen />
+      <LanguageScreen />
     </section>
   </div>
 );
