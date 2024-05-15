@@ -1,0 +1,25 @@
+.aside {
+  @apply flex-grow-0 basis-2/5 space-y-2 overflow-hidden overflow-y-auto p-1;
+}
+
+.card {
+  @apply rounded-md border-2 border-secondary;
+}
+
+.h2,
+.button {
+  @apply w-full p-1 px-2;
+}
+
+.h2 {
+  @apply text-2xl font-bold uppercase;
+}
+
+.button {
+  @apply justify-start truncate rounded-none border-b-0 border-l-0 border-r-0 border-t-2 capitalize transition-colors;
+}
+
+.button:active,
+.active {
+  @apply bg-secondary text-primary;
+}

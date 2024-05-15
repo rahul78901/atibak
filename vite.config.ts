@@ -12,6 +12,7 @@ export default defineConfig({
       '@': path.resolve(src, 'components'),
       '#': path.resolve(src, 'screens'),
       '₹': path.resolve(src, 'icons'),
+      '&': path.resolve(src, 'addons'),
     },
   },
 });

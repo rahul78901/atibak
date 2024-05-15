@@ -1,0 +1,7 @@
+.setting {
+  @apply flex h-full w-full overflow-hidden bg-[red];
+}
+
+.section {
+  @apply ml-1 grow border-l-2 pl-2;
+}
