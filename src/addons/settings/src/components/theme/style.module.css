@@ -1,0 +1,11 @@
+.group {
+  @apply mx-auto max-w-xl space-y-2;
+}
+
+.label {
+  @apply flex items-center gap-2 text-2xl font-bold capitalize;
+}
+
+.button {
+  @apply w-full text-sm uppercase;
+}

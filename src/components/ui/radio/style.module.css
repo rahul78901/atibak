@@ -1,3 +1,7 @@
 .input {
   @apply flex aspect-square h-10 cursor-pointer appearance-none items-center justify-center rounded-full border border-muted after:flex after:aspect-square after:h-4/5 after:rounded-full after:transition-all checked:border-2 checked:border-secondary checked:after:bg-secondary;
 }
+
+.sm {
+  @apply !h-5;
+}
