@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import PinScreen from './components/pin';
+import PatternScreen from './components/pattern';
 import SideNav from './components/side-nav';
 
 import styles from './style.module.css';
@@ -10,7 +10,7 @@ const SettingAddon: FC = () => (
     <SideNav />
 
     <section className={styles.section}>
-      <PinScreen />
+      <PatternScreen />
     </section>
   </div>
 );
