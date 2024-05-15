@@ -2,14 +2,14 @@ import type { FC } from 'react';
 
 import BottomNav from '@/bottom-nav';
 
-import SettingAddon from '&/settings';
+import MusicAddon from '&/musics';
 
 import styles from './style.module.css';
 
 const App: FC = () => (
   <div className={styles.layout}>
     <main className={styles.main}>
-      <SettingAddon />
+      <MusicAddon />
     </main>
     <BottomNav />
   </div>
