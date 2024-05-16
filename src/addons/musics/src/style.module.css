@@ -1,2 +1,7 @@
 .music {
+  @apply relative h-full w-full overflow-hidden lg:static;
+}
+
+.playing {
+  @apply lg:flex lg:gap-2;
 }

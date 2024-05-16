@@ -1,0 +1,22 @@
+.item {
+  @apply flex cursor-pointer flex-col gap-1 rounded-md border-2 p-2 @3xl/music:flex-row @3xl/music:py-0 @3xl/music:pl-0;
+}
+
+.picture {
+  @apply block !aspect-video w-full overflow-hidden rounded-md border-2 @3xl/music:basis-2/5 @3xl/music:rounded-none @3xl/music:border-0 @3xl/music:!border-r-2 @3xl/music:p-2;
+}
+
+.img {
+  @apply h-full w-full object-contain;
+}
+
+.info {
+  @apply overflow-hidden @3xl:basis-3/5;
+}
+.name {
+  @apply block truncate text-lg;
+}
+.singer,
+.time {
+  @apply block text-sm text-muted;
+}
