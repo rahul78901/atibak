@@ -1,18 +1,41 @@
-import type { FC } from 'react';
+import { type FC, lazy } from 'react';
 
-import LanguageScreen from './components/language';
 import SideNav from './components/side-nav';
+import useSettingStore, { PathType } from './store';
 
 import styles from './style.module.css';
 
-const SettingAddon: FC = () => (
-  <div className={styles.setting}>
-    <SideNav />
+const theme = lazy(() => import('./components/theme')),
+  language = lazy(() => import('./components/language')),
+  pin = lazy(() => import('./components/pin')),
+  password = lazy(() => import('./components/password')),
+  pattern = lazy(() => import('./components/pattern')),
+  textScreen = lazy(() => import('./components/text-screen'));
 
-    <section className={styles.section}>
-      <LanguageScreen />
-    </section>
-  </div>
-);
+const COMPONENTS = {
+  '--': () => null,
+  theme,
+  language,
+  pin,
+  password,
+  pattern,
+  'text to lock screen': textScreen,
+} satisfies Record<PathType, FC>;
+
+const SettingAddon: FC = () => {
+  const path = useSettingStore((state) => state.path);
+
+  const Screen = COMPONENTS[path];
+
+  return (
+    <div className={styles.setting}>
+      <SideNav />
+
+      <section className={styles.section}>
+        <Screen />
+      </section>
+    </div>
+  );
+};
 
 export default SettingAddon;
