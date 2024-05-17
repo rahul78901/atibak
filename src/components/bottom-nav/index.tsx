@@ -2,6 +2,12 @@ import type { FC } from 'react';
 
 import Button from '@/ui/button';
 
+import {
+  onBackButtonPressed,
+  onHomeButtonPressed,
+  onRecentButtonPressed,
+} from '$/index';
+
 import BackIcon from '₹/back';
 import HomeIcon from '₹/home';
 import RecentIcon from '₹/recent';
@@ -14,6 +20,7 @@ const BottomNav: FC = () => (
       <Button
         variant="icon"
         title="recent"
+        onClick={onRecentButtonPressed}
       >
         <RecentIcon />
       </Button>
@@ -21,6 +28,7 @@ const BottomNav: FC = () => (
       <Button
         variant="icon"
         title="home"
+        onClick={onHomeButtonPressed}
       >
         <HomeIcon />
       </Button>
@@ -28,6 +36,7 @@ const BottomNav: FC = () => (
       <Button
         variant="icon"
         title="back"
+        onClick={onBackButtonPressed}
       >
         <BackIcon />
       </Button>

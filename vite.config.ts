@@ -13,6 +13,7 @@ export default defineConfig({
       '#': path.resolve(src, 'screens'),
       '₹': path.resolve(src, 'icons'),
       '&': path.resolve(src, 'addons'),
+      $: path.resolve(src, 'store'),
     },
   },
 });

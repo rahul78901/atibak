@@ -14,11 +14,12 @@ type ButtonPropsType = PropsWithChildren &
   };
 
 const Button = forwardRef<HTMLButtonElement, ButtonPropsType>(
-  ({ className, title, children, variant = 'outline' }, ref) => (
+  ({ className, title, children, variant = 'outline', ...props }, ref) => (
     <button
       className={`${styles.button} ${variant === 'outline' ? styles.outline : variant === 'icon' ? styles.icon : ''} ${className}`}
       title={title}
       ref={ref}
+      {...props}
     >
       {children}
     </button>
