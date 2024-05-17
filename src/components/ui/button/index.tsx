@@ -1,12 +1,17 @@
-import { type PropsWithChildren, forwardRef } from 'react';
+import {
+  type ButtonHTMLAttributes,
+  type PropsWithChildren,
+  forwardRef,
+} from 'react';
 
 import styles from './style.module.css';
 
-type ButtonPropsType = PropsWithChildren & {
-  className?: string;
-  variant?: 'outline' | 'icon';
-  title?: string;
-};
+type ButtonPropsType = PropsWithChildren &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    className?: string;
+    variant?: 'outline' | 'icon';
+    title?: string;
+  };
 
 const Button = forwardRef<HTMLButtonElement, ButtonPropsType>(
   ({ className, title, children, variant = 'outline' }, ref) => (

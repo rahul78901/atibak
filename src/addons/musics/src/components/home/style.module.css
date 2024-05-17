@@ -6,6 +6,5 @@
 }
 
 .ul {
-  @apply grid max-h-full w-full grid-cols-2	gap-2	overflow-hidden overflow-y-auto p-2 @lg/music:grid-cols-3
-@7xl/music:grid-cols-5;
+  @apply grid max-h-full w-full grid-cols-2	gap-2	overflow-hidden overflow-y-auto p-2 @lg/music:grid-cols-3 @7xl/music:grid-cols-5;
 }

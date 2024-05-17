@@ -1,0 +1,27 @@
+.footer {
+  @apply sr-only space-y-2 lg:not-sr-only;
+}
+
+.open {
+  @apply not-sr-only;
+}
+
+.footer :where(button, svg) {
+  @apply aspect-square h-10 border-none;
+}
+
+.volume-div {
+  @apply mx-auto flex w-11/12 items-center justify-center gap-5;
+}
+
+.range-div {
+  @apply flex items-center gap-2 px-2;
+}
+
+.controler-div {
+  @apply mx-auto flex items-center justify-between lg:w-11/12;
+}
+
+.controler-div div {
+  @apply flex items-center gap-1;
+}

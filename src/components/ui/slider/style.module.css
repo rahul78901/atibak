@@ -1,0 +1,31 @@
+.div {
+  @apply relative isolate flex w-full touch-none select-none items-center justify-start;
+}
+
+.track {
+  @apply absolute -z-10 block h-full rounded-full bg-secondary;
+}
+
+.input {
+  @apply h-2 w-full cursor-pointer appearance-none rounded-full border;
+}
+
+@layer _input {
+  .thumb {
+    @apply aspect-square h-4 appearance-none rounded-full border border-primary bg-secondary;
+  }
+}
+
+.input::-webkit-slider-thumb {
+  @apply thumb;
+}
+
+.input::-moz-range-thumb {
+  @apply thumb;
+}
+
+/*
+ *
+ * "relative flex w-full touch-none select-none items-center",
+
+ * */

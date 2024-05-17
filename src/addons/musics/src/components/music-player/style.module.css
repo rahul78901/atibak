@@ -1,0 +1,69 @@
+.player {
+  @apply absolute bottom-0 
+  top-[calc(100%-3.5rem)] flex w-full
+  flex-col 
+  gap-2
+  overflow-hidden rounded-md border-t-2 bg-primary
+  p-1
+  lg:static
+  lg:basis-1/2
+  lg:rounded-none
+  lg:border-none;
+}
+
+.open {
+  @apply top-0 rounded-none border-none;
+}
+
+.div {
+  @apply flex grow gap-1 overflow-hidden lg:flex-col;
+}
+
+.open .div {
+  @apply flex-col;
+}
+
+.up {
+  @apply aspect-square h-full transition-all lg:hidden;
+}
+
+.open .up {
+  @apply ml-2 mt-2 h-14 w-14 rotate-180;
+}
+
+.picture {
+  @apply block aspect-video h-full rounded-md border-2 p-1  lg:mx-auto lg:mt-auto lg:h-40 lg:w-40;
+}
+
+.open .picture {
+  @apply mx-auto mt-auto h-40 w-40;
+}
+
+.img {
+  @apply h-full w-full rounded-md;
+}
+
+.info {
+  @apply flex flex-col gap-1 overflow-hidden lg:mx-auto lg:w-[30ch] lg:text-center;
+}
+
+.open .info {
+  @apply mx-auto w-[30ch] text-center;
+}
+
+.name {
+  @apply block truncate;
+}
+
+.time,
+.singer {
+  @apply text-sm text-muted;
+}
+
+.time {
+  @apply hidden lg:block;
+}
+
+.open .time {
+  @apply block;
+}
