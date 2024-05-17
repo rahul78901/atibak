@@ -1,13 +1,44 @@
+import { useAddonStore } from './addon';
+
 const { log } = console;
 
+const { setState: setAddonStore, getState: getAddonStore } = useAddonStore;
+
 export const onBackButtonPressed = (): void => {
-  log(`back pressed`);
+  const { isMenuOpened, current, addons } = getAddonStore();
+
+  if (current) {
+    const addon = addons[current];
+    if (addon.onBackPressed()) {
+      setAddonStore({
+        current: null,
+      });
+    }
+
+    return;
+  }
+
+  if (isMenuOpened) {
+    setAddonStore({
+      isMenuOpened: false,
+    });
+    return;
+  }
+
+  log('nothing to back');
 };
 
-export const onHomeButtonPressed = (): void => {
-  log(`home pressed`);
-};
+export const onHomeButtonPressed = (): void =>
+  setAddonStore({
+    isMenuOpened: false,
+  });
 
 export const onRecentButtonPressed = (): void => {
   log(`recent pressed`);
+};
+
+export const openMenu = (): void => {
+  setAddonStore({
+    isMenuOpened: true,
+  });
 };

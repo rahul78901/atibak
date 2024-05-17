@@ -2,6 +2,8 @@ import type { FC } from 'react';
 
 import Button from '@/ui/button';
 
+import { openMenu } from '$/index';
+
 import MenuIcon from '₹/menu';
 
 import styles from './style.module.css';
@@ -15,6 +17,7 @@ const HomeScreen: FC = () => (
         <Button
           title="menu"
           variant="icon"
+          onClick={openMenu}
         >
           <MenuIcon />
         </Button>
