@@ -1,3 +1,4 @@
+import type { AddonType } from '../addon';
 import { useAddonStore } from './addon';
 
 const { log } = console;
@@ -31,6 +32,8 @@ export const onBackButtonPressed = (): void => {
 export const onHomeButtonPressed = (): void =>
   setAddonStore({
     isMenuOpened: false,
+    isRecentOpened: false,
+    current: null,
   });
 
 export const onRecentButtonPressed = (): void => {
@@ -42,3 +45,15 @@ export const openMenu = (): void => {
     isMenuOpened: true,
   });
 };
+
+export const loadAddon =
+  (name: AddonType['name']): (() => void) =>
+  (): void => {
+    const addon = getAddonStore().addons[name];
+
+    if (addon) {
+      setAddonStore({
+        current: name,
+      });
+    }
+  };

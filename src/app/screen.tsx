@@ -6,9 +6,18 @@ const Home = lazy(() => import('#/home'));
 const Menu = lazy(() => import('#/menu'));
 
 const ScreenImpl: FC = () => {
-  const { isMenuOpened } = useAddonStore(({ isMenuOpened }) => ({
-    isMenuOpened,
-  }));
+  const { isMenuOpened, current, addons } = useAddonStore(
+    ({ isMenuOpened, current, addons }) => ({
+      isMenuOpened,
+      current,
+      addons,
+    })
+  );
+
+  if (current) {
+    const { App } = addons[current];
+    return <App />;
+  }
 
   if (isMenuOpened) {
     return <Menu />;

@@ -3,6 +3,7 @@ import { type FC, useMemo } from 'react';
 import Button from '@/ui/button';
 
 import { useAddonStore } from '$/addon';
+import { loadAddon } from '$/index';
 
 import styles from './style.module.css';
 
@@ -21,6 +22,7 @@ const MenuScreen: FC = () => {
               <Button
                 title="addon"
                 variant="icon"
+                onClick={loadAddon(key)}
               >
                 <addon.Logo />
               </Button>
