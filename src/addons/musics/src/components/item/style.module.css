@@ -7,7 +7,7 @@
 }
 
 .img {
-  @apply h-full w-full object-contain;
+  @apply h-full w-full object-cover;
 }
 
 .info {

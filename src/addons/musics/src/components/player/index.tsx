@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useEffect } from 'react';
 
 import Button from '@/ui/button';
 import Slider from '@/ui/slider';
@@ -15,101 +15,165 @@ import Repeat from '../../icons/repeat';
 import Right from '../../icons/right';
 import Shuffle from '../../icons/shuffle';
 import Volume from '../../icons/volume';
-import { isOpen } from '../music-player';
+import useMusicStore from '../../store';
+import useAudioStore, {
+  onLoaded,
+  onPause,
+  onPlay,
+  onUpdate,
+  onVolume,
+  pause,
+  play,
+  seek,
+  skip,
+} from '../../store/audio';
+import usePlayerStore from '../../store/player';
+import { formateTime } from '../../utils';
 
 import styles from './style.module.css';
 
-const Player: FC = () => (
-  <footer className={`${styles.footer} ${isOpen ? styles.open : ''}`}>
-    <div className={styles['volume-div']}>
-      <Volume />
+const VOLUME_STEP = 0.1,
+  MIN = 0,
+  VOLUME_MAX = 1;
 
-      <Mute />
+const Player: FC = () => {
+  const miniPlayer = usePlayerStore((state) => state.miniPlayer);
 
-      <Slider />
+  const audioRef = useAudioStore((state) => state.audioRef);
 
-      <Button
-        variant="icon"
-        title="up comming musics"
-      >
-        <Musics />
-      </Button>
-    </div>
+  const { playing, duration, currentTime, volume } = useAudioStore(
+    ({ playing, duration, currentTime, volume }) => ({
+      playing,
+      duration,
+      currentTime,
+      volume,
+    })
+  );
 
-    <div className={styles['range-div']}>
-      <span>00:00</span>
-      <Slider />
-      <span>00:00</span>
-    </div>
+  const music = useMusicStore(({ musics, id }) => musics[id!]);
+  const { src } = music;
 
-    <div className={styles['controler-div']}>
-      <Button
-        disabled
-        variant="icon"
-        title="shuffle"
-      >
-        <Shuffle />
-      </Button>
+  useEffect(() => {
+    audioRef.current!.volume = volume;
+  }, [volume, audioRef]);
 
-      <div>
-        <Button
-          variant="icon"
-          title="previous"
-        >
-          <Left />
-        </Button>
+  return (
+    <footer className={`${styles.footer} ${!miniPlayer ? styles.open : ''}`}>
+      <audio
+        hidden
+        onPlay={onPlay}
+        onPause={onPause}
+        onLoadedMetadata={onLoaded}
+        onTimeUpdate={onUpdate}
+        src={src}
+        autoPlay
+        ref={audioRef}
+      />
+      <div className={styles['volume-div']}>
+        {volume > VOLUME_STEP ? <Volume /> : <Mute />}
 
-        <Button
-          variant="icon"
-          title="skip backword"
-        >
-          <Backword />
-        </Button>
-
-        <Button
-          variant="icon"
-          title="pause"
-        >
-          <Pause />
-        </Button>
+        <Slider
+          min={MIN}
+          value={volume}
+          step={VOLUME_STEP}
+          max={VOLUME_MAX}
+          onInput={onVolume}
+        />
 
         <Button
           variant="icon"
-          title="play"
+          title="up comming musics"
         >
-          <Play />
-        </Button>
-
-        <Button
-          variant="icon"
-          title="skip forward"
-        >
-          <Forward />
-        </Button>
-
-        <Button
-          variant="icon"
-          title="next"
-        >
-          <Right />
+          <Musics />
         </Button>
       </div>
 
-      <Button
-        variant="icon"
-        title="loop"
-      >
-        <Repeat />
-      </Button>
+      <div className={styles['range-div']}>
+        <span>{formateTime(currentTime)}</span>
+        <Slider
+          min={MIN}
+          value={currentTime}
+          max={duration}
+          onInput={seek}
+        />
+        <span>{formateTime(duration)}</span>
+      </div>
 
-      <Button
-        variant="icon"
-        title="lock"
-      >
-        <Lock />
-      </Button>
-    </div>
-  </footer>
-);
+      <div className={styles['controler-div']}>
+        <Button
+          disabled
+          variant="icon"
+          title="shuffle"
+        >
+          <Shuffle />
+        </Button>
+
+        <div>
+          <Button
+            variant="icon"
+            title="previous"
+          >
+            <Left />
+          </Button>
+
+          <Button
+            variant="icon"
+            title="skip backword"
+            onClick={skip('backword')}
+          >
+            <Backword />
+          </Button>
+
+          {playing ? (
+            <Button
+              variant="icon"
+              title="pause"
+              onClick={pause}
+            >
+              <Pause />
+            </Button>
+          ) : (
+            <Button
+              variant="icon"
+              title="play"
+              onClick={play}
+            >
+              <Play />
+            </Button>
+          )}
+
+          <Button
+            variant="icon"
+            title="skip forward"
+            onClick={skip('forward')}
+          >
+            <Forward />
+          </Button>
+
+          <Button
+            variant="icon"
+            title="next"
+          >
+            <Right />
+          </Button>
+        </div>
+
+        <Button
+          variant="icon"
+          title="loop"
+        >
+          <Repeat />
+        </Button>
+
+        <Button
+          variant="icon"
+          title="lock"
+        >
+          <Lock />
+        </Button>
+      </div>
+    </footer>
+  );
+};
 
 export default Player;

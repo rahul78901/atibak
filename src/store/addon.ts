@@ -11,7 +11,7 @@ type AddonStoreType = {
 };
 
 export const useAddonStore = create<AddonStoreType>(() => ({
-  current: null,
+  current: 'music', // null,
   isMenuOpened: false,
   isRecentOpened: false,
 

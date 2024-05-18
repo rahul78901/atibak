@@ -1,25 +1,35 @@
 import type { FC } from 'react';
 
-import music from '../../assets/music.png';
+import defaultImg from '../../assets/music.png';
+import { MusicType, setId } from '../../store';
 
 import styles from './style.module.css';
 
-const MusicItem: FC = () => (
-  <li className={styles.item}>
+type MusicItemPropsType = {
+  music: Omit<MusicType, 'src'>;
+};
+
+const MusicItem: FC<MusicItemPropsType> = ({
+  music: { _id, name, singer, date, imgUrl },
+}) => (
+  <li
+    onClick={() => setId(_id)}
+    className={styles.item}
+  >
     <picture className={styles.picture}>
       <img
         className={styles.img}
-        src={music}
-        alt="music name"
+        src={imgUrl || defaultImg}
+        alt={name}
       />
     </picture>
 
     <div className={styles.info}>
-      <strong className={styles.name}>song name</strong>
+      <strong className={styles.name}>{name}</strong>
 
-      <em className={styles.singer}>singer</em>
+      <em className={styles.singer}>{singer}</em>
 
-      <time className={styles.time}>12/12/2000</time>
+      <time className={styles.time}>{String(date)}</time>
     </div>
   </li>
 );
