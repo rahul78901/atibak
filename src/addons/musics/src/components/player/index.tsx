@@ -17,6 +17,7 @@ import Shuffle from '../../icons/shuffle';
 import Volume from '../../icons/volume';
 import useMusicStore from '../../store';
 import useAudioStore, {
+  changeMode,
   onLoaded,
   onPause,
   onPlay,
@@ -41,12 +42,13 @@ const Player: FC = () => {
 
   const audioRef = useAudioStore((state) => state.audioRef);
 
-  const { playing, duration, currentTime, volume } = useAudioStore(
-    ({ playing, duration, currentTime, volume }) => ({
+  const { playing, duration, currentTime, volume, mode } = useAudioStore(
+    ({ playing, duration, currentTime, volume, mode }) => ({
       playing,
       duration,
       currentTime,
       volume,
+      mode,
     })
   );
 
@@ -158,19 +160,31 @@ const Player: FC = () => {
           </Button>
         </div>
 
-        <Button
-          variant="icon"
-          title="loop"
-        >
-          <Repeat />
-        </Button>
-
-        <Button
-          variant="icon"
-          title="lock"
-        >
-          <Lock />
-        </Button>
+        {mode === 'none' ? (
+          <Button
+            variant="icon"
+            title="loop"
+            onClick={changeMode('repeat')}
+          >
+            <Repeat />
+          </Button>
+        ) : mode === 'repeat' ? (
+          <Button
+            variant="icon"
+            title="lock"
+            onClick={changeMode('single')}
+          >
+            <Lock />
+          </Button>
+        ) : (
+          <Button
+            variant="icon"
+            title="no repeat"
+            onClick={changeMode('none')}
+          >
+            none
+          </Button>
+        )}
       </div>
     </footer>
   );

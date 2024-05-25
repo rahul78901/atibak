@@ -10,10 +10,10 @@ type MusicItemPropsType = {
 };
 
 const MusicItem: FC<MusicItemPropsType> = ({
-  music: { _id, name, singer, date, imgUrl },
+  music: { _id, name, singer, year, imgUrl },
 }) => (
   <li
-    onClick={() => setId(_id)}
+    onClick={() => setId(_id, true)}
     className={styles.item}
   >
     <picture className={styles.picture}>
@@ -29,7 +29,7 @@ const MusicItem: FC<MusicItemPropsType> = ({
 
       <em className={styles.singer}>{singer}</em>
 
-      <time className={styles.time}>{String(date)}</time>
+      <time className={styles.time}>{String(year)}</time>
     </div>
   </li>
 );

@@ -10,7 +10,11 @@ import styles from './style.module.css';
 
 const MusicPlayerScreen: FC = () => {
   const miniPlayer = usePlayerStore((state) => state.miniPlayer);
-  const { musics, id } = useMusicStore(({ musics, id }) => ({ id, musics }));
+  const { musics, id } = useMusicStore(({ musics, id, playlist }) => ({
+    id,
+    musics,
+    playlist,
+  }));
 
   const onUpClick = useCallback(() => {
     if (miniPlayer) {
@@ -24,7 +28,7 @@ const MusicPlayerScreen: FC = () => {
     return null;
   }
 
-  const { name, imgUrl, singer, date } = musics[id];
+  const { name, imgUrl, singer, year } = musics[id];
 
   return (
     <div className={`${styles.player} ${!miniPlayer ? styles.open : ''}`}>
@@ -46,7 +50,7 @@ const MusicPlayerScreen: FC = () => {
         <div className={styles.info}>
           <strong className={styles.name}>{name}</strong>
           <em className={styles.singer}>{singer}</em>
-          <time className={styles.time}>{String(date)}</time>
+          <time className={styles.time}>{String(year)}</time>
         </div>
       </div>
 
