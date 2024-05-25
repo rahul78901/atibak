@@ -1,0 +1,129 @@
+.section {
+  @apply absolute bottom-0 left-1/2 flex max-h-0 w-[95%] -translate-x-1/2 flex-col gap-2 overflow-hidden rounded-tl-md rounded-tr-md border-t-2 border-primary bg-primary transition-all duration-500;
+}
+
+.open {
+  @apply max-h-[75%] border-secondary;
+}
+
+.header,
+.list {
+  @apply px-2;
+}
+
+.header {
+  @apply flex items-center justify-between;
+}
+
+.list {
+  @apply grow overflow-auto;
+}
+
+.ul {
+  @apply flex flex-col gap-1;
+}
+
+.li {
+  @apply flex grow-0 cursor-pointer items-center gap-2;
+}
+
+.active {
+  @apply bg-secondary text-primary;
+}
+
+.li + .li {
+  @apply border-t-2 pt-1;
+}
+
+.pic {
+  @apply block aspect-video w-24 shrink-0 overflow-hidden rounded-md;
+}
+
+.pic img {
+  @apply h-full w-full object-cover;
+}
+
+/*
+
+/*.section {
+  --_height: 75%;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  background: var(--mute-color);
+  max-height: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  transition: 0.5s;
+  background: inherit;
+}
+
+.open {
+  max-height: var(--_height);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.ul {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.li {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+  overflow: hidden;
+}
+
+.active {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+.li + .li {
+  border-top: 1px solid currentColor;
+}
+.pic {
+  height: 4rem;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: ;
+}
+.pic img {
+  height: 100%;
+  width: 100%;
+}
+*/
+
+.info {
+  @apply flex flex-col overflow-hidden;
+}
+.info strong {
+  @apply truncate;
+}
+.info em {
+  @apply text-base font-medium;
+}

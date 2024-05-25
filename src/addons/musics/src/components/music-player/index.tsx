@@ -3,7 +3,12 @@ import { type FC, useCallback } from 'react';
 import defaultImg from '../../assets/music.png';
 import Up from '../../icons/up';
 import useMusicStore from '../../store';
-import usePlayerStore, { closePlayer, openPlayer } from '../../store/player';
+import usePlayerStore, {
+  closePlayList,
+  closePlayer,
+  openPlayer,
+} from '../../store/player';
+import PlayList from '../play-list';
 import Player from '../player';
 
 import styles from './style.module.css';
@@ -20,6 +25,7 @@ const MusicPlayerScreen: FC = () => {
     if (miniPlayer) {
       openPlayer();
     } else {
+      closePlayList();
       closePlayer();
     }
   }, [miniPlayer]);
@@ -55,6 +61,7 @@ const MusicPlayerScreen: FC = () => {
       </div>
 
       <Player />
+      <PlayList />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { type FC, useCallback, useEffect } from 'react';
 
 import Button from '@/ui/button';
 import Slider from '@/ui/slider';
@@ -15,9 +15,8 @@ import Repeat from '../../icons/repeat';
 import Right from '../../icons/right';
 import Shuffle from '../../icons/shuffle';
 import Volume from '../../icons/volume';
-import useMusicStore from '../../store';
+import useMusicStore, { changeMode, next, prev } from '../../store';
 import useAudioStore, {
-  changeMode,
   onLoaded,
   onPause,
   onPlay,
@@ -28,7 +27,7 @@ import useAudioStore, {
   seek,
   skip,
 } from '../../store/audio';
-import usePlayerStore from '../../store/player';
+import usePlayerStore, { openPlayList } from '../../store/player';
 import { formateTime } from '../../utils';
 
 import styles from './style.module.css';
@@ -42,18 +41,27 @@ const Player: FC = () => {
 
   const audioRef = useAudioStore((state) => state.audioRef);
 
-  const { playing, duration, currentTime, volume, mode } = useAudioStore(
-    ({ playing, duration, currentTime, volume, mode }) => ({
+  const { playing, duration, currentTime, volume } = useAudioStore(
+    ({ playing, duration, currentTime, volume }) => ({
       playing,
       duration,
       currentTime,
       volume,
-      mode,
     })
   );
 
+  const mode = useMusicStore((state) => state.mode);
+
   const music = useMusicStore(({ musics, id }) => musics[id!]);
   const { src } = music;
+
+  const onEnded = useCallback(() => {
+    if (mode === 'one') {
+      audioRef.current?.play();
+      return;
+    }
+    next();
+  }, [mode, audioRef]);
 
   useEffect(() => {
     audioRef.current!.volume = volume;
@@ -68,6 +76,7 @@ const Player: FC = () => {
         onLoadedMetadata={onLoaded}
         onTimeUpdate={onUpdate}
         src={src}
+        onEnded={onEnded}
         autoPlay
         ref={audioRef}
       />
@@ -83,6 +92,7 @@ const Player: FC = () => {
         />
 
         <Button
+          onClick={openPlayList}
           variant="icon"
           title="up comming musics"
         >
@@ -114,6 +124,7 @@ const Player: FC = () => {
           <Button
             variant="icon"
             title="previous"
+            onClick={prev}
           >
             <Left />
           </Button>
@@ -155,6 +166,7 @@ const Player: FC = () => {
           <Button
             variant="icon"
             title="next"
+            onClick={next}
           >
             <Right />
           </Button>
@@ -172,7 +184,7 @@ const Player: FC = () => {
           <Button
             variant="icon"
             title="lock"
-            onClick={changeMode('single')}
+            onClick={changeMode('one')}
           >
             <Lock />
           </Button>

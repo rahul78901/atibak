@@ -12,8 +12,6 @@ type AudioStoreType = {
   duration: number;
   currentTime: number;
   volume: number;
-
-  mode: 'single' | 'repeat' | 'none';
 };
 
 const useAudioStore = create<AudioStoreType>(() => ({
@@ -23,7 +21,6 @@ const useAudioStore = create<AudioStoreType>(() => ({
   duration: 0,
   currentTime: 0,
   volume: 0.5,
-  mode: 'none',
 }));
 
 const { setState, getState } = useAudioStore;
@@ -90,12 +87,6 @@ const skip =
         : SKIP_DURATION * BACKWORD_MULTIPLAYER;
   };
 
-const changeMode =
-  (mode: AudioStoreType['mode']): (() => void) =>
-  (): void =>
-    setState({
-      mode,
-    });
 export {
   onPlay,
   onPause,
@@ -106,7 +97,6 @@ export {
   seek,
   onVolume,
   skip,
-  changeMode,
 };
 
 export default useAudioStore;
