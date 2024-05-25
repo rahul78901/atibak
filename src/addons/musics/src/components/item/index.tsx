@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import { format } from 'timeago.js';
+
 import defaultImg from '../../assets/music.png';
 import { MusicType, setId } from '../../store';
 
@@ -29,7 +31,12 @@ const MusicItem: FC<MusicItemPropsType> = ({
 
       <em className={styles.singer}>{singer}</em>
 
-      <time className={styles.time}>{String(year)}</time>
+      <time
+        dateTime={year.toJSON()}
+        className={styles.time}
+      >
+        {format(year)}
+      </time>
     </div>
   </li>
 );

@@ -74,6 +74,7 @@ export const setMusics = (list: MusicType[]): void => {
 
   for (const item of list) {
     ids.push(item._id);
+    item.year = new Date(item.year);
     musics[item._id] = item;
   }
 
@@ -91,6 +92,7 @@ export const setPlayList = (list: MusicType[]): void => {
 
   for (const item of list) {
     ids.add(item._id);
+    item.year = new Date(item.year);
     musics[item._id] = item;
   }
 

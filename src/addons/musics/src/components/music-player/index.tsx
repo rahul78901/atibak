@@ -1,5 +1,7 @@
 import { type FC, useCallback } from 'react';
 
+import { format } from 'timeago.js';
+
 import defaultImg from '../../assets/music.png';
 import Up from '../../icons/up';
 import useMusicStore from '../../store';
@@ -56,7 +58,12 @@ const MusicPlayerScreen: FC = () => {
         <div className={styles.info}>
           <strong className={styles.name}>{name}</strong>
           <em className={styles.singer}>{singer}</em>
-          <time className={styles.time}>{String(year)}</time>
+          <time
+            dateTime={year.toString()}
+            className={styles.time}
+          >
+            {format(year)}
+          </time>
         </div>
       </div>
 
