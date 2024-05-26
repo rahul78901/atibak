@@ -1,14 +1,25 @@
 import { type FC, useEffect } from 'react';
 
+import Loader from '@/loader';
+
 import config, { type ResponseType } from '../../../config';
 import HomeScreen from './components/home';
 import MusicPlayerScreen from './components/music-player';
-import useMusicStore, { type MusicType, setError, setMusics } from './store';
+import useMusicStore, {
+  type MusicType,
+  setError,
+  setLoading,
+  setMusics,
+} from './store';
 
 import styles from './style.module.css';
 
 const MusicAddon: FC = () => {
-  const { id, error } = useMusicStore(({ id, error }) => ({ id, error }));
+  const { id, error, loading } = useMusicStore(({ id, error, loading }) => ({
+    id,
+    error,
+    loading,
+  }));
 
   const playing = id !== null;
 
@@ -18,6 +29,8 @@ const MusicAddon: FC = () => {
     const fetchMusics = async () => {
       const url = new URL('videos', config.BACKEND_URL);
 
+      setLoading(false);
+      setError(null);
       try {
         const res = await fetch(url);
         const data: ResponseType = await res.json();
@@ -29,6 +42,8 @@ const MusicAddon: FC = () => {
         setMusics(data.data as MusicType[]);
       } catch (err) {
         setError((err as Error).message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMusics();
@@ -39,6 +54,10 @@ const MusicAddon: FC = () => {
 
   if (error) {
     return <p>{error}</p>;
+  }
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

@@ -27,6 +27,8 @@ type MusicStoreType = {
   error: string | null;
 
   mode: ModeType;
+
+  loading: boolean;
 };
 
 const useMusicStore = create<MusicStoreType>(() => ({
@@ -38,6 +40,7 @@ const useMusicStore = create<MusicStoreType>(() => ({
   musics: {},
   error: null,
   mode: 'none',
+  loading: false,
 }));
 
 const { setState, getState } = useMusicStore;
@@ -63,10 +66,12 @@ export const setId = (id: string, requestForPlayList = false): void => {
   }
 };
 
-export const setError = (error: string): void =>
+export const setError = (error: string | null): void =>
   setState({
     error,
   });
+
+export const setLoading = (loading: boolean): void => setState({ loading });
 
 export const setMusics = (list: MusicType[]): void => {
   const ids: MusicStoreType['ids'] = [];
