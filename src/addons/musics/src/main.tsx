@@ -3,6 +3,7 @@ import { type FC, useEffect } from 'react';
 import Loader from '@/loader';
 
 import config, { type ResponseType } from '../../../config';
+import ErrorScreen from './components/error';
 import HomeScreen from './components/home';
 import MusicPlayerScreen from './components/music-player';
 import useMusicStore, {
@@ -53,7 +54,7 @@ const MusicAddon: FC = () => {
   }, []);
 
   if (error) {
-    return <p>{error}</p>;
+    return <ErrorScreen error={error} />;
   }
 
   if (loading) {

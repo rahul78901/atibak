@@ -22,6 +22,27 @@ select {
     --destructive: 0 84.2% 60.2%;
   }
 
+  .rose {
+    --primary: 240 4.8% 95.9%;
+    --secondary: 346.8 77.2% 49.8%;
+    --muted: 346.8 77.2% 49.8%;
+    --destructive: 0 84.2% 60.2%;
+  }
+
+  .green {
+    --primary: 240 4.8% 95.9%;
+    --secondary: 142.1 76.2% 36.3%;
+    --muted: 142.1 76.2% 36.3%;
+    --destructive: 0 84.2% 60.2%;
+  }
+
+  .blue {
+    --primary: 210 40% 96.1%;
+    --secondary: 221.2 83.2% 53.3%;
+    --muted: 221.2 83.2% 53.3%;
+    --destructive: 0 84.2% 60.2%;
+  }
+
   html,
   body,
   #root {

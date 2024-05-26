@@ -2,7 +2,9 @@ import type { FC } from 'react';
 
 import Button from '@/ui/button';
 
-import { openMenu } from '$/index';
+import { Logo as SettingLogo, name as settingName } from '&/settings';
+
+import { loadAddon, openMenu } from '$/index';
 
 import MenuIcon from '₹/menu';
 
@@ -14,6 +16,13 @@ const HomeScreen: FC = () => (
       <div className={styles.up}></div>
 
       <div className={styles.bottom}>
+        <Button
+          title={settingName}
+          variant="icon"
+          onClick={loadAddon(settingName)}
+        >
+          <SettingLogo />
+        </Button>
         <Button
           title="menu"
           variant="icon"
