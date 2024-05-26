@@ -1,7 +1,7 @@
 import { type FC, lazy } from 'react';
 
 import SideNav from './components/side-nav';
-import useSettingStore, { PathType } from './store';
+import usePathStore, { type PathType } from './store/path';
 
 import styles from './style.module.css';
 
@@ -23,7 +23,7 @@ const COMPONENTS = {
 } satisfies Record<PathType, FC>;
 
 const SettingAddon: FC = () => {
-  const path = useSettingStore((state) => state.path);
+  const path = usePathStore((state) => state.path);
 
   const Screen = COMPONENTS[path];
 

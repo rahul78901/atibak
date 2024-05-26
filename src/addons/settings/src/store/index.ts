@@ -1,27 +1,29 @@
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type PathType =
-  | '--'
-  | 'theme'
-  | 'language'
-  | 'pin'
-  | 'password'
-  | 'pattern'
-  | 'text to lock screen';
+export type ThemeType = 'light' | 'green' | 'rose' | 'blue';
 
 type SettingStoreType = {
-  path: PathType;
+  theme: ThemeType;
 };
 
-const useSettingStore = create<SettingStoreType>(() => ({
-  path: '--',
-}));
+const useSettingStore = create(
+  persist<SettingStoreType>(
+    () => ({
+      theme: 'light',
+    }),
+    {
+      name: 'setting',
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
 
 const { setState } = useSettingStore;
 
-export const setPath = (path: PathType): void =>
+export const setTheme = (theme: ThemeType): void =>
   setState({
-    path,
+    theme,
   });
 
 export default useSettingStore;

@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import Button from '@/ui/button';
 
-import useSettingStore, { PathType, setPath } from '../../store';
+import usePathStore, { type PathType, setPath } from '../../store/path';
 
 import styles from './style.module.css';
 
@@ -29,7 +29,7 @@ type SideNavItemPropsType = {
 };
 
 const SideNavItem: FC<SideNavItemPropsType> = ({ path }) => {
-  const pathname = useSettingStore((state) => state.path);
+  const pathname = usePathStore((state) => state.path);
 
   const isActive = path === pathname;
 
