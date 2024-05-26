@@ -11,7 +11,7 @@ type ErrorScreenPropsType = {
 const ErrorScreen: FC<ErrorScreenPropsType> = ({ error }) => (
   <div className={styles.screen}>
     <h2 className={styles.h2}>{error}</h2>
-    <Button>re Freash</Button>
+    <Button onClick={window.location.reload}>re Freash</Button>
   </div>
 );
 
