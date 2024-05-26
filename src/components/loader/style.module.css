@@ -1,0 +1,28 @@
+.loader {
+  @apply flex h-full w-full items-center justify-center;
+}
+.ripple {
+  @apply relative flex aspect-square w-32 items-center justify-center;
+}
+
+.div {
+  animation: ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  @apply absolute aspect-square rounded-full border-2 border-secondary;
+}
+
+.div2 {
+  animation-delay: -0.5s;
+}
+
+@keyframes ripple {
+  0%,
+  4.9% {
+    @apply w-3 opacity-0;
+  }
+  5% {
+    @apply w-3 opacity-100;
+  }
+  100% {
+    @apply w-full opacity-0;
+  }
+}

@@ -1,4 +1,6 @@
-import SettingAddon from './src/main';
+import { lazy } from 'react';
+
+const SettingAddon = lazy(() => import('./src/main'));
 
 export const name = 'setting';
 

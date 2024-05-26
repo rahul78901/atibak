@@ -1,4 +1,6 @@
-import MusicAddon from './src/main';
+import { lazy } from 'react';
+
+const MusicAddon = lazy(() => import('./src/main'));
 
 export const name = 'music';
 

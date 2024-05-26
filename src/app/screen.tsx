@@ -1,5 +1,7 @@
 import { type FC, Suspense, lazy } from 'react';
 
+import Loader from '@/loader';
+
 import { useAddonStore } from '$/addon';
 
 const Home = lazy(() => import('#/home'));
@@ -27,7 +29,7 @@ const ScreenImpl: FC = () => {
 };
 
 const Screen: FC = () => (
-  <Suspense>
+  <Suspense fallback={<Loader />}>
     <ScreenImpl />
   </Suspense>
 );

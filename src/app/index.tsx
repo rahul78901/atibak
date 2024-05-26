@@ -1,4 +1,4 @@
-import { type FC, Suspense } from 'react';
+import type { FC } from 'react';
 
 import BottomNav from '@/bottom-nav';
 
@@ -9,9 +9,7 @@ import styles from './style.module.css';
 const App: FC = () => (
   <div className={styles.layout}>
     <main className={styles.main}>
-      <Suspense>
-        <Screen />
-      </Suspense>
+      <Screen />
     </main>
     <BottomNav />
   </div>
