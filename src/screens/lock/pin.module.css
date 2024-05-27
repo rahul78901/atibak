@@ -1,4 +1,5 @@
-.fieldset{@apply flex gap-2 items-center justify-center
+.fieldset{
+  @apply flex gap-2 items-center justify-center
 }
 
 .devidor {

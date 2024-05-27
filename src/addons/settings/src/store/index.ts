@@ -57,7 +57,9 @@ type AddLockReturnType = {
 const encrypt = (value: string): string => sha256(value).toString();
 
 export const encryptPattern = (pattern: number[]): string =>
-  encrypt(pattern.reduce((acc, current) => acc.concat(current.toString()), ''));
+  encrypt(
+    pattern.sort().reduce((acc, current) => acc.concat(current.toString()), '')
+  );
 
 export const addLock = (): AddLockReturnType => {
   const password = (value: string): void => setPassword(encrypt(value));
@@ -73,20 +75,24 @@ export const addLock = (): AddLockReturnType => {
 };
 
 //eslint-disable-next-line no-unused-vars
-type VerifyFnType = (value: string) => boolean;
+type VerifyFnType<ValueType = string> = (value: ValueType) => boolean;
 
 type VerifyLockReturnType = {
   password: VerifyFnType;
   pin: VerifyFnType;
+  pattern: VerifyFnType<number[]>;
 };
 
 export const verifyLock = (): VerifyLockReturnType => {
   const password = (value: string): boolean =>
     getState().password === encrypt(value);
   const pin = (value: string): boolean => getState().pin === encrypt(value);
+  const pattern = (value: number[]): boolean =>
+    getState().pattern === encryptPattern(value);
   return {
     password,
     pin,
+    pattern,
   };
 };
 
