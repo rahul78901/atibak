@@ -7,6 +7,7 @@ import Button from '@/ui/button';
 import GetInIcon from '₹/get-in';
 import type{PasswordLockPropsType} from './password';
 import useSettingStore from '&/settings/src/store';
+import PinLock from './pin';
 
 export const errorFn=(error:string)=>error.concat(" does not match")
 
@@ -36,6 +37,18 @@ const LockScreen: FC = () => {
 
 type LockScreenImplPropsType= PasswordLockPropsType
 const LockScreenImpl:FC<LockScreenImplPropsType>=({children,setError})=>{
+
+  const {pin}= useSettingStore(({
+    pin
+  })=>({
+    pin
+  })) 
+
+if(pin){
+  return <PinLock setError={setError}>
+    {children}
+  </PinLock> 
+}
 
   return <PasswordLock setError={setError}>
     {children}

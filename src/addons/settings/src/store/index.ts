@@ -77,13 +77,16 @@ type VerifyFnType = (value: string) => boolean;
 
 type VerifyLockReturnType = {
   password: VerifyFnType;
+  pin: VerifyFnType;
 };
 
 export const verifyLock = (): VerifyLockReturnType => {
   const password = (value: string): boolean =>
     getState().password === encrypt(value);
+  const pin = (value: string): boolean => getState().pin === encrypt(value);
   return {
     password,
+    pin,
   };
 };
 

@@ -1,140 +1,152 @@
-import type { FC } from 'react';
+import {
+  ChangeEvent,
+  type Dispatch,
+  type FC,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import Button from '@/ui/button';
-import Input from '@/ui/input';
+import PinInput from '@/ui/pin';
+
+import useSettingStore, { addLock, verifyLock } from '../../store';
+import { setPath } from '../../store/path';
 
 import styles from './style.module.css';
 
-const PinScreen: FC = () => (
-  <div>
-    <h2>create pin</h2>
+const PinScreen: FC = () => {
+  const pin = useSettingStore((state) => state.pin);
+  const [oldPin, setOldPin] = useState<string>('');
+  const [newPin, setNewPin] = useState<string>('');
+  const [confirmPin, setConfirmPin] = useState<string>('');
 
-    <div className={styles.pin}>
-      <fieldset className={styles.group}>
-        <legend>old pin</legend>
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-        <span className={styles.span} />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-      </fieldset>
+  const updateValue = useCallback(
+    (setValue: Dispatch<SetStateAction<string>>) => (value: string) =>
+      setValue(value),
+    []
+  );
 
-      <fieldset className={styles.group}>
-        <legend>new pin</legend>
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-        <span className={styles.span} />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-      </fieldset>
+  const disabled = useMemo(() => {
+    const length = PINS.length + PINS2.length;
 
-      <fieldset className={styles.group}>
-        <legend>repeat pin</legend>
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
+    if (pin) {
+      if (oldPin.length !== length) {
+        return true;
+      }
+    }
+
+    if (newPin.length !== length) {
+      return true;
+    }
+    if (confirmPin.length !== length) {
+      return true;
+    }
+
+    if (newPin !== confirmPin) {
+      return true;
+    }
+
+    return false;
+  }, [newPin, confirmPin, pin, oldPin]);
+
+  const onClick = useCallback(() => {
+    if (pin) {
+      const verified = verifyLock().pin(oldPin);
+      if (!verified) {
+        return;
+      }
+    }
+
+    addLock().pin(newPin);
+    setPath('--');
+  }, [newPin, oldPin, pin]);
+
+  return (
+    <div>
+      <h2>{pin ? 'update' : 'create'} pin</h2>
+
+      <div className={styles.pin}>
+        {pin ? (
+          <Pin
+            updateValue={updateValue(setOldPin)}
+            label="old pin"
+          />
+        ) : null}
+        <Pin
+          updateValue={updateValue(setNewPin)}
+          label="new pin"
         />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
+        <Pin
+          updateValue={updateValue(setConfirmPin)}
+          label="repeat pin"
         />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-        <span className={styles.span} />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="a"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="1"
-        />
-        <Input
-          minLength={1}
-          maxLength={1}
-          className={styles.input}
-          placeholder="@"
-        />
-      </fieldset>
-      <Button className={styles.button}>Save</Button>
+        <Button
+          disabled={disabled}
+          onClick={onClick}
+          className={styles.button}
+        >
+          {pin ? 'update' : 'Save'}
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
+type PinPropsType = {
+  label: string;
+  //eslint-disable-next-line no-unused-vars
+  updateValue: (value: string) => void;
+};
+
+//eslint-disable-next-line no-magic-numbers
+const PINS = [0, 1] as const;
+//eslint-disable-next-line no-magic-numbers
+const PINS2 = [2, 3] as const;
+
+const Pin: FC<PinPropsType> = ({ label, updateValue }) => {
+  const [value, setValue] = useState<Record<number, string>>({});
+  const onInput = useCallback(
+    (index: number) => (e: ChangeEvent<HTMLInputElement>) => {
+      setValue((value) => ({
+        ...value,
+        [index]: e.target.value,
+      }));
+    },
+    []
+  );
+
+  useEffect(() => {
+    updateValue(Object.values(value).join(''));
+  }, [value, updateValue]);
+
+  return (
+    <fieldset className={styles.group}>
+      <legend>{label}</legend>
+      {PINS.map((pin) => (
+        <PinInput
+          key={pin}
+          value={value[pin] || ''}
+          onInput={onInput(pin)}
+          minLength={1}
+          placeholder="a"
+        />
+      ))}
+
+      <span className={styles.span} />
+      {PINS2.map((pin) => (
+        <PinInput
+          key={pin}
+          value={value[pin] || ''}
+          onInput={onInput(pin)}
+          minLength={1}
+          placeholder="@"
+        />
+      ))}
+    </fieldset>
+  );
+};
 
 export default PinScreen;
