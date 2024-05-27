@@ -9,6 +9,7 @@ type SettingStoreType = {
   pin: string | null;
   password: string | null;
   pattern: string | null;
+  lockScreenText: string | null;
 };
 
 const useSettingStore = create(
@@ -18,6 +19,7 @@ const useSettingStore = create(
       pin: null,
       password: null,
       pattern: null,
+      lockScreenText: null,
     }),
     {
       name: 'setting',
@@ -32,6 +34,9 @@ export const setTheme = (theme: ThemeType): void =>
   setState({
     theme,
   });
+
+export const setLockScreenText = (lockScreenText: string | null): void =>
+  setState({ lockScreenText });
 
 const setPassword = (password: string): void =>
   setState({ password, pin: null, pattern: null });

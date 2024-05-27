@@ -6,17 +6,17 @@ const PasswordLock =lazy(()=>import('./password'));
 import Button from '@/ui/button';
 import GetInIcon from '₹/get-in';
 import type{PasswordLockPropsType} from './password';
+import useSettingStore from '&/settings/src/store';
 
 export const errorFn=(error:string)=>error.concat(" does not match")
 
-const msg= "lock screen message"
-
 const LockScreen: FC = () => {
   const [error,setError]= useState<string>('')
+  const lockScreenText = useSettingStore(state=>state.lockScreenText)
   return (
     <div className={styles.screen}>
       <div className={styles.content}>
-        {msg?<p className={styles.msg}>{msg}</p>:null}
+        {lockScreenText?<p className={styles.msg}>{lockScreenText}</p>:null}
         {
           error?
             <p className={styles.error}>{error}</p>

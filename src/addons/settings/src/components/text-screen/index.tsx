@@ -1,23 +1,48 @@
-import type { FC } from 'react';
+import { type FC, useCallback, useState } from 'react';
 
 import Button from '@/ui/button';
 import Input from '@/ui/input';
 
+import useSettingStore, { setLockScreenText } from '../../store';
+import { setPath } from '../../store/path';
+
 import styles from './style.module.css';
 
-const AddTextScreen: FC = () => (
-  <div>
-    <h2>add text to lock screen</h2>
+const AddTextScreen: FC = () => {
+  const lockScreenText = useSettingStore((state) => state.lockScreenText);
+  const [msg, setMsg] = useState<string>(lockScreenText || '');
 
-    <div className={styles.group}>
-      <Input
-        className={styles.input}
-        placeholder="add text to lock screen"
-      />
+  const onClick = useCallback((): void => {
+    if (msg === '') {
+      setLockScreenText(null);
+    } else {
+      setLockScreenText(msg);
+    }
 
-      <Button className={styles.button}>Save</Button>
+    setPath('--');
+  }, [msg]);
+
+  return (
+    <div>
+      <h2>{lockScreenText ? 'update' : 'add'} text to lock screen</h2>
+
+      <div className={styles.group}>
+        <Input
+          value={msg}
+          onInput={(e) => setMsg((e.target as HTMLInputElement).value)}
+          className={styles.input}
+          placeholder="add text to lock screen"
+        />
+
+        <Button
+          className={styles.button}
+          onClick={onClick}
+        >
+          {lockScreenText ? 'update' : 'save'}
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AddTextScreen;
