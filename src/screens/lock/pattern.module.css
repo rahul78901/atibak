@@ -1,0 +1,7 @@
+.fieldset{
+  @apply aspect-square grid grid-cols-3 gap-2
+}
+
+.fieldset input{
+  @apply h-3/4 w-3/4 m-auto border-4
+}

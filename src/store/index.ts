@@ -57,3 +57,5 @@ export const loadAddon =
       });
     }
   };
+
+export const setLock = (isLocked: boolean) => setAddonStore({ isLocked });

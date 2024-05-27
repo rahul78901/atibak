@@ -1,0 +1,15 @@
+.screen{@apply flex items-center justify-center h-full w-full
+}
+
+.content{
+  @apply max-w-[35ch] w-full flex flex-col  gap-2 
+}
+
+.msg,
+.error{
+  @apply text-center text-2xl capitalize
+}
+
+.error{
+  @apply text-destructive
+}

@@ -1,11 +1,11 @@
 .screen {
-  @apply flex h-full w-full flex-col items-center justify-end gap-2 pb-10 text-2xl;
+  @apply flex h-full w-full flex-col items-center justify-end gap-2 pb-10 text-center text-2xl text-destructive;
 }
 
 .screen button {
-  @apply capitalize;
+  @apply border-destructive capitalize;
 }
 
 .h2 {
-  @apply text-3xl capitalize;
+  @apply max-w-[20ch] text-3xl capitalize;
 }

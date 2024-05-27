@@ -1,0 +1,6 @@
+.fieldset{@apply flex gap-2 items-center justify-center
+}
+
+.devidor {
+  @apply inline-block aspect-square h-[1ch] bg-secondary;
+}

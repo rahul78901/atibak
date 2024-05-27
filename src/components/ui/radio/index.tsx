@@ -9,7 +9,7 @@ type RadioPropsType = InputHTMLAttributes<HTMLInputElement> & {
 const Radio = forwardRef<HTMLInputElement, RadioPropsType>(
   ({ sm = false, className, ...props }, ref) => (
     <input
-      type="radio"
+      type="checkbox"
       className={`${styles.input} ${sm ? styles.sm : ''} ${className}`}
       ref={ref}
       {...props}
