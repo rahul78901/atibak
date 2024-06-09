@@ -20,7 +20,7 @@ const MenuScreen: FC = () => {
           return (
             <li key={index}>
               <Button
-                title="addon"
+                title={addon.name}
                 variant="icon"
                 onClick={loadAddon(key)}
               >

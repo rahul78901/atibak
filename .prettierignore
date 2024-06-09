@@ -5,3 +5,6 @@ node_modules
 .prettier*
 *ignore*
 .husky
+*.png
+!src/**/*.json
+**/languages/*.json

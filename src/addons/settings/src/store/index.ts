@@ -2,6 +2,8 @@ import sha256 from 'crypto-js/sha256';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import type { LanguageType } from '../components/language';
+
 export type ThemeType = 'light' | 'green' | 'rose' | 'blue';
 
 type SettingStoreType = {
@@ -10,6 +12,8 @@ type SettingStoreType = {
   password: string | null;
   pattern: string | null;
   lockScreenText: string | null;
+
+  language: LanguageType;
 };
 
 const useSettingStore = create(
@@ -20,6 +24,8 @@ const useSettingStore = create(
       password: null,
       pattern: null,
       lockScreenText: null,
+
+      language: 'en',
     }),
     {
       name: 'setting',
@@ -95,5 +101,10 @@ export const verifyLock = (): VerifyLockReturnType => {
     pattern,
   };
 };
+
+export const setLanguage = (language: LanguageType): void =>
+  setState({
+    language,
+  });
 
 export default useSettingStore;

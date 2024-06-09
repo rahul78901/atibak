@@ -11,7 +11,8 @@
     "formate": "prettier -c .",
     "formate:fix": "prettier -w .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lang:build":"node ./src/i18n/compile.js"
   },
   "dependencies": {
     "crypto-js": "^4.2.0",

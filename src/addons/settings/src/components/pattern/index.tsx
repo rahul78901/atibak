@@ -3,8 +3,9 @@ import { type FC, useCallback, useMemo, useState } from 'react';
 import Button from '@/ui/button';
 import Radio from '@/ui/radio';
 
-import { addLock } from '../../store';
+import useSettingStore, { addLock } from '../../store';
 import { setPath } from '../../store/path';
+import useTranslate from '../../translate';
 
 import styles from './style.module.css';
 
@@ -16,6 +17,7 @@ const DOTS = Array(NUMBER_OF_DOTS)
   .map((_, index) => index);
 
 const PatternScreen: FC = () => {
+  const language = useSettingStore(({ language }) => language);
   const [pattern, setPattern] = useState<number[]>([]);
 
   const onInput = useCallback(
@@ -40,9 +42,11 @@ const PatternScreen: FC = () => {
     setPath('--');
   }, [pattern]);
 
+  const { t } = useTranslate(language);
+
   return (
     <div>
-      <h2>create pattern</h2>
+      <h2>{t('pattern:create')}</h2>
 
       <div className={styles.pattern}>
         <fieldset className={styles.group}>
@@ -58,7 +62,7 @@ const PatternScreen: FC = () => {
           disabled={disabled}
           className={styles.button}
         >
-          Save
+          {t('save')}
         </Button>
       </div>
     </div>

@@ -7,7 +7,7 @@ export type PathType =
   | 'pin'
   | 'password'
   | 'pattern'
-  | 'text to lock screen';
+  | 'text-screen';
 
 type PathStoreType = {
   path: PathType;

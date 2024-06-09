@@ -5,11 +5,17 @@ import Input from '@/ui/input';
 
 import useSettingStore, { setLockScreenText } from '../../store';
 import { setPath } from '../../store/path';
+import useTranslate from '../../translate';
 
 import styles from './style.module.css';
 
 const AddTextScreen: FC = () => {
-  const lockScreenText = useSettingStore((state) => state.lockScreenText);
+  const { lockScreenText, language } = useSettingStore(
+    ({ lockScreenText, language }) => ({
+      language,
+      lockScreenText,
+    })
+  );
   const [msg, setMsg] = useState<string>(lockScreenText || '');
 
   const onClick = useCallback((): void => {
@@ -22,23 +28,24 @@ const AddTextScreen: FC = () => {
     setPath('--');
   }, [msg]);
 
+  const { t } = useTranslate(language);
+
   return (
     <div>
-      <h2>{lockScreenText ? 'update' : 'add'} text to lock screen</h2>
-
+      <h2>{t(lockScreenText ? 'text-screen:update' : 'text-screen:add')}</h2>
       <div className={styles.group}>
         <Input
           value={msg}
           onInput={(e) => setMsg((e.target as HTMLInputElement).value)}
           className={styles.input}
-          placeholder="add text to lock screen"
+          placeholder={t('text-screen:add')}
         />
 
         <Button
           className={styles.button}
           onClick={onClick}
         >
-          {lockScreenText ? 'update' : 'save'}
+          {t(lockScreenText ? 'update' : 'save')}
         </Button>
       </div>
     </div>

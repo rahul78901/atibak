@@ -14,10 +14,13 @@ import PinInput from '@/ui/pin';
 
 import useSettingStore, { addLock, verifyLock } from '../../store';
 import { setPath } from '../../store/path';
+import useTranslate from '../../translate';
 
 import styles from './style.module.css';
 
 const PinScreen: FC = () => {
+  const language = useSettingStore(({ language }) => language);
+
   const pin = useSettingStore((state) => state.pin);
   const [oldPin, setOldPin] = useState<string>('');
   const [newPin, setNewPin] = useState<string>('');
@@ -64,31 +67,33 @@ const PinScreen: FC = () => {
     setPath('--');
   }, [newPin, oldPin, pin]);
 
+  const { t } = useTranslate(language);
+
   return (
     <div>
-      <h2>{pin ? 'update' : 'create'} pin</h2>
+      <h2>{t(pin ? 'pin:update' : 'pin:create')}</h2>
 
       <div className={styles.pin}>
         {pin ? (
           <Pin
             updateValue={updateValue(setOldPin)}
-            label="old pin"
+            label={t('pin:old')}
           />
         ) : null}
         <Pin
           updateValue={updateValue(setNewPin)}
-          label="new pin"
+          label={t('pin:create')}
         />
         <Pin
           updateValue={updateValue(setConfirmPin)}
-          label="repeat pin"
+          label={t('pin:repeat')}
         />
         <Button
           disabled={disabled}
           onClick={onClick}
           className={styles.button}
         >
-          {pin ? 'update' : 'Save'}
+          {t(pin ? 'update' : 'save')}
         </Button>
       </div>
     </div>

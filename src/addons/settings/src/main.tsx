@@ -19,7 +19,7 @@ const COMPONENTS = {
   pin,
   password,
   pattern,
-  'text to lock screen': textScreen,
+  'text-screen': textScreen,
 } satisfies Record<PathType, FC>;
 
 const SettingAddon: FC = () => {

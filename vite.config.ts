@@ -14,6 +14,7 @@ export default defineConfig({
       '₹': path.resolve(src, 'icons'),
       '&': path.resolve(src, 'addons'),
       $: path.resolve(src, 'store'),
+      '¢': path.resolve(src, 'i18n'),
     },
   },
 });

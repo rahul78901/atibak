@@ -12,13 +12,17 @@ import Button from '@/ui/button';
 import Input from '@/ui/input';
 
 import useSettingStore, { addLock, verifyLock } from '../../store';
+import useTranslate from '../../translate';
 
 import styles from './style.module.css';
 
 const MINIMUM_PASSWORD_LENGTH = 8;
 
 const PasswordScreen: FC = () => {
-  const password = useSettingStore((state) => state.password);
+  const { password, language } = useSettingStore(({ password, language }) => ({
+    password,
+    language,
+  }));
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [oldPassword, setOldPassword] = useState<string>('');
@@ -59,9 +63,11 @@ const PasswordScreen: FC = () => {
     setConfirmPassword('');
   }, [newPassword, password, oldPassword]);
 
+  const { t } = useTranslate(language);
+
   return (
     <div>
-      <h2>{password ? 'update' : 'create'} password</h2>
+      <h2>{t(password ? 'password:update' : 'password:create')}</h2>
 
       <div className={styles.group}>
         {password ? (
@@ -69,27 +75,27 @@ const PasswordScreen: FC = () => {
             value={oldPassword}
             onInput={onInput(setOldPassword)}
             className={styles.input}
-            placeholder="old password"
+            placeholder={t('password:old')}
           />
         ) : null}
         <Input
           value={newPassword}
           onInput={onInput(setNewPassword)}
           className={styles.input}
-          placeholder="new password"
+          placeholder={t('password:new')}
         />
         <Input
           value={confirmPassword}
           onInput={onInput(setConfirmPassword)}
           className={styles.input}
-          placeholder="repeat password"
+          placeholder={t('password:repeat')}
         />
         <Button
           onClick={onClick}
           disabled={disabled}
           className={styles.button}
         >
-          {password ? 'Chenge' : 'Save'}
+          {t(password ? 'save' : 'chenge')}
         </Button>
       </div>
     </div>
