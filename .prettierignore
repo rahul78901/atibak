@@ -1,0 +1,7 @@
+node_modules
+*lock*
+*.json
+*.ico
+.prettier*
+*ignore*
+.husky

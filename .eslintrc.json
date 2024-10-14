@@ -1,0 +1,42 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:react-hooks/recommended"
+  ],
+  "rules": {
+    "no-var": "error",
+    "arrow-parens": "error",
+    "prefer-arrow-callback": "error",
+    "no-await-in-loop": "error",
+    "no-empty": "error",
+    "prefer-spread": "warn",
+    "curly": "error",
+    "no-func-assign": "error",
+    "no-irregular-whitespace": "error",
+    "require-await": "error",
+    "camelcase": "error",
+    "no-magic-numbers": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-unused-labels": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "^_"
+  ]
+}
