@@ -1,0 +1,15 @@
+.item {
+  @apply flex cursor-pointer items-center justify-between border-b border-primary p-2;
+}
+
+.group {
+  @apply flex items-center gap-2;
+}
+
+.picture {
+  @apply flex aspect-square w-12 items-center justify-center overflow-hidden rounded-full border-2 border-primary;
+}
+
+.content {
+  @apply flex flex-col justify-start text-sm;
+}

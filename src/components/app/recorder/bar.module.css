@@ -1,0 +1,6 @@
+.div {
+  @apply absolute -top-4 h-32 w-2 bg-background;
+}
+.span {
+  @apply absolute bottom-3 right-0 z-40 h-24 w-full origin-bottom-right -rotate-[120deg] bg-background;
+}

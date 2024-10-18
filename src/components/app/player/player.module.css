@@ -1,0 +1,35 @@
+.player {
+  @apply flex flex-col gap-1;
+}
+
+.title {
+  @apply truncate text-base tracking-wide;
+}
+
+.info {
+  @apply flex items-center justify-between;
+}
+
+.badges {
+  @apply flex flex-grow items-center gap-1 overflow-auto text-xs;
+}
+
+.right {
+  @apply flex-shrink-0;
+}
+
+.right-button {
+  @apply gap-2 rounded-md;
+}
+
+.canvas {
+  @apply h-16 w-full;
+}
+
+.seek {
+  @apply flex items-center gap-2;
+}
+
+.slider {
+  @apply cursor-pointer;
+}

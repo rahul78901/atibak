@@ -1,0 +1,72 @@
+.screw {
+  @apply absolute flex aspect-square w-3 flex-col items-center justify-center rounded-full bg-primary-foreground shadow;
+}
+
+.screw::after,
+.screw::before {
+  content: "";
+  @apply absolute rounded-md bg-primary;
+}
+
+.screw::before {
+  content: "";
+  @apply h-3/4 w-[15%];
+}
+
+.screw::after {
+  content: "";
+  @apply h-[15%] w-3/4;
+}
+
+.big {
+  @apply w-4;
+}
+
+.one,
+.mid,
+.top {
+  @apply -translate-y-1/2;
+}
+
+.top {
+  @apply top-3;
+}
+.top.big {
+  @apply top-4;
+}
+
+.bottom {
+  @apply bottom-3 translate-y-1/2;
+}
+.bottom.big {
+  @apply bottom-4;
+}
+
+.left {
+  @apply left-3 -translate-x-1/2;
+}
+.left.big {
+  @apply left-4;
+}
+
+.right {
+  @apply right-3 translate-x-1/2;
+}
+.right.big {
+  @apply right-4;
+}
+
+.one {
+  @apply top-1/3;
+}
+.two {
+  @apply top-2/3;
+}
+
+.mid {
+  @apply top-1/2;
+}
+
+.middle {
+  @apply left-1/2;
+}

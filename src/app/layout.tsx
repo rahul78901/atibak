@@ -2,7 +2,10 @@ import type { FC, PropsWithChildren } from "react";
 
 import type { Metadata } from "next";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import "./globals.css";
+import classes from "./layout.module.css";
 
 export const metadata: Metadata = {
   title: "Atibak",
@@ -11,19 +14,13 @@ export const metadata: Metadata = {
 
 type RootLayoutPropsType = PropsWithChildren;
 
-const _x = 0;
-// const __x = 0;
-// const ___x = 0;
-// const ___ = 0;
-// const __ = 0;
-const _ = 0;
-
 const RootLayout: FC<RootLayoutPropsType> = ({ children }) => {
-  console.log(_x);
-
   return (
     <html lang="en">
-      <body className="h-screen w-screen overflow-hidden">{children}</body>
+      <body className={classes.body}>
+        {children}
+        <Toaster closeButton />
+      </body>
     </html>
   );
 };

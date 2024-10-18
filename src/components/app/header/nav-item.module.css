@@ -1,0 +1,6 @@
+.button {
+  @apply w-full justify-start uppercase;
+}
+.link {
+  @apply flex gap-3;
+}

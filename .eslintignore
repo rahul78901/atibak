@@ -5,3 +5,4 @@ node_modules
 .prettier*
 *ignore*
 .husky
+src/components/ui

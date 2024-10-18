@@ -1,0 +1,9 @@
+.button {
+  @apply fixed bottom-5 right-5;
+}
+.content {
+  @apply w-11/12;
+}
+.header {
+  @apply text-left;
+}

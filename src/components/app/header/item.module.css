@@ -1,0 +1,6 @@
+.button {
+  @apply h-auto w-full items-start justify-start gap-3 rounded-none border-none py-3;
+}
+.span {
+  @apply text-sm capitalize;
+}

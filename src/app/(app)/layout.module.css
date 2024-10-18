@@ -1,0 +1,11 @@
+.root {
+  @apply flex h-full w-full flex-col overflow-hidden;
+}
+
+.main-div {
+  @apply flex flex-grow overflow-hidden;
+}
+
+.main {
+  @apply flex-grow p-2;
+}

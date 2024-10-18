@@ -1,0 +1,7 @@
+.div {
+  @apply flex h-full flex-col gap-1 overflow-hidden;
+}
+
+.list {
+  @apply mb-2 flex-grow overflow-auto;
+}

@@ -1,0 +1,18 @@
+.wraper {
+  @apply flex items-center gap-2;
+}
+.content {
+  @apply w-72 px-3;
+}
+
+.header {
+  @apply items-start pl-5;
+}
+
+.nav {
+  @apply h-full pt-5;
+}
+
+.link {
+  @apply h-fit select-none text-2xl;
+}

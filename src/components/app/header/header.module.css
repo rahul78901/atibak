@@ -1,0 +1,11 @@
+.header {
+  @apply flex items-center justify-between p-6;
+}
+
+.content {
+  @apply overflow-hidden p-0 shadow-md;
+}
+
+.group {
+  @apply w-full;
+}

@@ -1,0 +1,3 @@
+.main-cord {
+  @apply flex aspect-square w-[90%] animate-spin items-center justify-center rounded-full border-2 border-white bg-transparent bg-center;
+}
